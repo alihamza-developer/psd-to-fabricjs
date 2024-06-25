@@ -1,0 +1,15 @@
+# Extension temp
+/extensions/temp
+/extensions/temp/*
+
+
+# temp
+/temp
+/temp/*
+
+# node modules
+/node_modules
+/node_modules/*
+
+# package-lock.json
+/package-lock.json

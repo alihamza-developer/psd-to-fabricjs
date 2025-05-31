@@ -1,5 +1,5 @@
 <?php
-class TCFunctions
+class Functions
 {
     private $db;
     private $file_extensions_mapping = [
@@ -219,4 +219,4 @@ class TCFunctions
     }
 }
 
-$_fn = new TCFunctions();
+$_fn = new Functions();

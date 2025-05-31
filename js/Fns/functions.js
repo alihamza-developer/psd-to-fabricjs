@@ -12,7 +12,8 @@ function isJson(str) {
         return false;
     }
     return true;
-}    // Get Number
+}  
+  // Get Number
 function toNumber(str) {
     if (typeof (str) == "number" || typeof (str) == "float") return str;
     if (str) {
@@ -142,25 +143,7 @@ function isImageFile(file) {
         return false;
     }
 }
-function tcFns() {
-    // Set Height to other element height
-    $('[data-js-height]').each(function () {
-        let $elem = $($(this).dataVal("js-height"));
-        if ($elem.length) {
-            $(this).height($elem.height());
-        }
-        $(this).removeAttr("data-js-height");
-    });
-}
-// TC REsponsive image
-function tcResImage() {
-    $(".tc-res-img[src]").each(function () {
-        $(this).css("background-image", `url(${$(this).attr("src")})`);
-        $(this).removeAttr("src");
-        $(this).removeClass("tc-res-img");
-        $(this).addClass("tc-res-img-div");
-    });
-}
+
 // Download file
 function downloadFile(url, filename) {
     let link = document.createElement('a');
@@ -174,10 +157,6 @@ function downloadFile(url, filename) {
 // Refresh Functions
 function refreshFns() {
     bsTooltips(); // bootstrap tooltips & Popover
-    tcCheckbox(); // Checkbox
-    initTcJxElements('.tc-jx-element'); // Jx Elements
-    tcFns(); // Custom Functions
-    tcResImage(); // TC Responsive Image
 }
 $(document).ready(refreshFns);
 

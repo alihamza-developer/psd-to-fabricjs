@@ -1,55 +1,10 @@
-// Attach files to form
-function attachFiles(formData, element) {
 
-    let fileInputs,
-        uploadFiles = [],
-        $element = $(element);
-
-    if ($element.tagName() == "input" && $element.inputType() == "file") {
-        fileInputs = $element;
-    } else {
-        fileInputs = $element.find("input[type='file']");
-    }
-
-    fileInputs.each(function () {
-        let name = $(this).attr("name"),
-            files = $(this).hasClass("tc-file-input") ? tc.get("inputFiles", $(this).attr("tc-input-id")) : Array.from($(this).prop("files"));
-
-        name = $(this).hasAttr("multiple") ? name : name.replace(/(\[\])/gm, "");
-
-        if (files.length > 0) {
-            files.forEach(file => {
-                uploadFiles.push({
-                    name: name,
-                    data: file
-                });
-            });
-        }
-    });
-
-    // Cleansing form data
-    fileInputs.each(function () {
-        formData.delete($(this).attr("name"));
-    });
-
-    // Append files to form data
-    uploadFiles.forEach(file => {
-        formData.append(file.name, file.data);
-    });
-
-    return (uploadFiles.length > 0)
-
-}
 // Submit form
 function submitForm(form, extraData = {}, showPopup = true, cb = null) {
     let formData = $(form).serialize(),
         submitBtn = $(form).find("[type='submit']"),
         btnText = submitBtn.html();
-    if ($(form).hasClass("tc-tmp-form")) {
-        formData = $(form).find("select, textarea, input").serialize();
-        submitBtn = $(form).find(".tc-submit-btn");
-        btnText = submitBtn.html();
-    }
+
     let valid = true;
     let inputs = $(form).find("input:not([type='hidden']), textarea, select");
     for (let i = 0; i < inputs.length; i++) {
@@ -77,27 +32,14 @@ function submitForm(form, extraData = {}, showPopup = true, cb = null) {
     $inputFiles.each(function () {
         let files = this.files,
             name = $(this).attr("name");
-        if ($(this).hasClass("tc-file-input")) {
-            files = tc._file.get("inputFiles", $(this).attr("tc-input-id"));
-            if ($(this).hasAttr("data-required")) {
-                if (files.length == 0) {
-                    filesNotFound = true;
-                }
-            }
-            files.forEach(file => {
-                uploadedFiles.push({
-                    name: name,
-                    data: file
-                })
+
+        for (let i = 0; i < files.length; i++) {
+            uploadedFiles.push({
+                name: name,
+                data: files[i]
             });
-        } else {
-            for (let i = 0; i < files.length; i++) {
-                uploadedFiles.push({
-                    name: name,
-                    data: files[i]
-                });
-            }
         }
+
         if (files.length) containFile = true;
     });
 
@@ -167,14 +109,7 @@ function submitForm(form, extraData = {}, showPopup = true, cb = null) {
             if ("redirect" in response) {
                 location.assign(response.redirect);
             }
-            if (toBoolean($(form).dataVal("reset"))) {
-                if ($(form).hasClass("tc-tmp-form")) {
-                    $(form).find("select,textarea,input").val('').prop("checked", false);
-                } else {
-                    form.reset();
-                    tc._file.delete("inputFiles", form);
-                }
-            }
+
         },
         error: function (er) {
             if (showPopup) {
@@ -218,10 +153,7 @@ $(document).on("submit", ".js-form, .ajax_form", function (e) {
         submitForm(form);
     }
 });
-$(document).on("click", ".tc-tmp-form .tc-submit-btn", function () {
-    let form = $(this).parents(".tc-tmp-form").first();
-    submitForm(form.get(0));
-});
+
 // Prevent Enter
 $(document).on("keydown", '[data-prevent-enter="true"]', function (e) {
     let keyCode = e.keyCode || e.which;
@@ -366,50 +298,8 @@ $(document).on("click", ".editTableInfo", function (e) {
             }
 
 
-            if ($(this).hasAttr("data-tc-tag")) {
-                Tags.loadTagsFromValue($(this).parents(".tags"));
-            }
+
         }
     });
     fn._handle($(this));
-});
-// Delete Data from table
-$(document).on('click', '.delete-td-data, .tc-delete-btn', function (e) {
-    e.preventDefault();
-    let dataTarget = $(this).attr('data-target'),
-        dataAction = $(this).attr('data-action'),
-        controllerURL = 'controllers/',
-        row = $(this).parents('tr').first();
-    if ($(this).dataVal("parent"))
-        row = $(this).parents($(this).dataVal("parent")).first();
-    if (!dataTarget || !dataAction) return false;
-    if (this.hasAttribute('data-controller')) controllerURL += $(this).attr("data-controller");
-    else controllerURL += "delete";
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.value) {
-            $.ajax({
-                url: controllerURL,
-                type: 'POST',
-                data: { action: dataAction, target: dataTarget, deleteData: true },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.status === "success")
-                        row.remove();
-                    else
-                        sAlert(data.data, data.status);
-                },
-                error: function () {
-                    makeError();
-                }
-            })
-        }
-    })
 });

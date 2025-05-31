@@ -73,11 +73,6 @@ body.full-window {
     margin-bottom: 10px;
 }
 
-.tc-res-img-div {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
 .modal-content {
     background: transparent;

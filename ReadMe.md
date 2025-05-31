@@ -7,11 +7,10 @@ This project is a simple example of how to render a PSD file to a Fabric JS canv
 ## Installation
 
 ```bash
+1. npm install
 1. Make temp folder in root directory
 2. Make temp folder in extension folder
-npm install
 ```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-```

@@ -1,6 +1,6 @@
 <?php
 
-class TCExtension
+class Extension
 {
     private $path = 'extensions';
     private $extensions = [];
@@ -162,11 +162,11 @@ class TCExtension
     }
 }
 
-$tc_ext = new TCExtension();
+$ext = new Extension();
 
 // Register extensions here
 
-$tc_ext->register_extension('node', 'psd-to-canvas', [
+$ext->register_extension('node', 'psd-to-canvas', [
     'filename' => 'psd-to-canvas.js',
     'command' => 'node _{{filename}}_',
 ]);

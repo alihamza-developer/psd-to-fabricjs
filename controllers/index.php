@@ -14,7 +14,7 @@ if (isset($_POST['psdToCanvas'])) {
     if ($file['status'] !== 'success') returnError('File not uploaded');
 
 
-    $res = $tc_ext->execute('node::psd-to-canvas', [
+    $res = $ext->execute('node::psd-to-canvas', [
         'filepath' => merge_path(_DIR_, $file['filepath']),
         'folderpath' => merge_path(_DIR_, $folder_path)
     ]);

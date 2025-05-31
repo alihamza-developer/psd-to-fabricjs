@@ -34,6 +34,8 @@ cd psd-to-fabricjs
 2. Install dependencies:
 ```bash
 npm install
+/temp 
+/extensions/temp
 ```
 
 3. Set up your PHP server and ensure it can execute the Node.js script.

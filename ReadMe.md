@@ -1,16 +1,45 @@
-# RENDER PSD TO FABRIC JS CANVAS
+# 🖼️ PSD to Fabric.js Canvas Tool
 
+A web-based tool that converts PSD files into editable Fabric.js canvas elements. Easily visualize, manipulate, and export layered PSD designs directly in the browser.
 
-## Introduction
-This project is a simple example of how to render a PSD file to a Fabric JS canvas. The project uses the psd node.js library to parse the PSD file and render it to a Fabric JS canvas. The project also uses the Fabric JS library to render the PSD file to a canvas.
+## 🚀 Features
 
-## Installation
+- 🎨 **Render PSD to Fabric.js Canvas**
+- 📁 **Layer System** – Supports individual layer manipulation.
+- ❌ **Delete Item** – Remove any layer from the canvas.
+- 👁️ **Eye Button** – Toggle layer visibility (hide/unhide).
+- 💾 **Download Canvas** – Export the final canvas as **JPG** or **PNG**.
+- 📏 **Canvas Auto-Sizing** – Automatically sets the Fabric.js canvas dimensions based on PSD size.
 
+## 🛠️ Tech Stack
+
+- **Node.js** – PSD file parsing (`psd` npm package)
+- **PHP** – Executes the Node.js script from backend
+- **HTML/CSS/JS** – Frontend structure and styling
+- **Fabric.js** – Renders and manipulates canvas
+- **JavaScript** – Layer controls, Render and export logic
+
+## 📸 Screenshot
+
+<img src="images/screenshot.png" alt="PSD to Fabric Canvas Screenshot" width="80%" style="border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px;">
+
+## 📦 Installation
+
+1. Clone the repo:
 ```bash
-1. npm install
-1. Make temp folder in root directory
-2. Make temp folder in extension folder
+git clone https://github.com/alihamza-developer/psd-to-fabricjs.git
+cd psd-to-fabricjs
 ```
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up your PHP server and ensure it can execute the Node.js script.
+
+4. Upload your `.psd` file via the frontend and watch it render onto the canvas!
+
+## 📄 License
+
+MIT – Use this project freely in your personal or commercial projects.

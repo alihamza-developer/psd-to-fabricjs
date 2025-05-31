@@ -34,8 +34,8 @@ $(document).on("click", ".tc-nav .tc-nav-item", function (e) {
     $(this).addClass('active');
     let $panel = $parent.find(target);
     $panel.addClass("active");
-    tc.fn._handle($parent);
-    tc.fn._handle($panel);
+    fn._handle($parent);
+    fn._handle($panel);
 });
 // Remove Tc Nav
 $(document).on("click", ".tc-nav .tc-nav-item [data-detach='tc-nav']", function (e) {
@@ -250,7 +250,7 @@ function tcJxRequestSend(request) {
             if (loader)
                 enableBtn(element, elementHtml);
             if (callback)
-                return tc.fn._handle(element, response);
+                return fn._handle(element, response);
             if (!showAlert)
                 return true;
             if (!isJson(response)) return false;
@@ -383,12 +383,12 @@ $(document).on("click", '[data-toggle="addHTML"]', function () {
     // Append Data
     $pick.removeClass("d-none");
     $drop.append($pick);
-    tc.fn._handle(this);
+    fn._handle(this);
 });
 // #endregion Add HTML
 // Bootstrap modal callback
 $(document).on("show.bs.modal", ".modal[data-callback]", function (e) {
-    tc.fn._handle(this, e, 'callback');
+    fn._handle(this, e, 'callback');
 });
 // #region Preview image file from file input
 $(document).on("change", ".tc-file-preview-input", function () {

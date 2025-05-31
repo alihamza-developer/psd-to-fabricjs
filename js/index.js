@@ -1,12 +1,23 @@
 // create a wrapper around native canvas element (with id="c")
-const canvas = new fabric.Canvas('canvas');
-let count = 0;
-tc.fn.cb.psdLayersCB = ($el, res) => {
+let canvas = null,
+    count = 0;
+
+fn.cb.psdLayersCB = ($el, res) => {
     if (res.status !== 'success') return false;
-    let { file, layersData } = res.data;
-    canvas.clear();
-    for (let i = 0; i < layersData.length; i++) {
-        let item = layersData[i];
+
+    let { data, width, height } = res.data;
+
+    // Reset Canvas
+    if (canvas) {
+        canvas.dispose();
+        $(".layers-collection").html('');
+        count = 0;
+    }
+
+    canvas = new fabric.Canvas('canvas', { width, height });
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
         count++;
         let { left, top, src, type } = item;
         // Set Text
@@ -79,6 +90,7 @@ tc.fn.cb.psdLayersCB = ($el, res) => {
             $(".layers-collection").append(html)
         }
     }
+
     canvas.renderAll();
 }
 

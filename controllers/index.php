@@ -20,10 +20,15 @@ if (isset($_POST['psdToCanvas'])) {
     ]);
     $data = json_decode($res, true);
 
+    $width = $data['width'];
+    $height = $data['height'];
+    $data = $data['data'];
 
 
     returnSuccess([
         'file' => $file,
-        'layersData' => $data
+        'width' => $width,
+        'height' => $height,
+        'data' => $data,
     ]);
 }

@@ -1,6 +1,4 @@
-const tc = {};
-// TC Functions
-tc.fn = {
+const fn = {
     // callbacks
     cb: {},
     // call before
@@ -34,7 +32,7 @@ tc.fn = {
                 if (!cb.length) return true;
                 if (!(cb in fns)) {
                     valid = false;
-                    console.error(`Uncaught TypeError: tc.${type}.${cb} is not a function`);
+                    console.error(`Uncaught TypeError: ${type}.${cb} is not a function`);
                     return true;
                 }
                 if (isJson(parameter)) parameter = JSON.parse(parameter);
@@ -46,7 +44,7 @@ tc.fn = {
         } else {
             callback = $(elem).dataVal(attrName);
             if (callback) {
-                console.error('Uncaught TypeError: tc.fn.' + type + '.' + callback + ' is not a function');
+                console.error('Uncaught TypeError: fn.' + type + '.' + callback + ' is not a function');
                 valid = false;
             }
         }

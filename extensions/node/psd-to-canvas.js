@@ -76,7 +76,16 @@ async function extractLayersFromPSD(psdPath) {
         if (layer.name == "<BG>") data[i].background = true;
         i++;
     });
-    return data;
+
+    const width = psd.header.cols;
+    const height = psd.header.rows;
+
+    return {
+        data,
+        width,
+        height,
+    }
+
 }
 
 // Run the function on the test.psd file

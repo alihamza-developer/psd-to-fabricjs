@@ -159,7 +159,7 @@ function submitForm(form, extraData = {}, showPopup = true, cb = null) {
                 cb(response);
             }
             if (form.hasAttribute('data-callback')) {
-                return tc.fn._handle($(form), response, 'callback');
+                return fn._handle($(form), response, 'callback');
             }
             if (showPopup) {
                 handleAlert(response);
@@ -371,7 +371,7 @@ $(document).on("click", ".editTableInfo", function (e) {
             }
         }
     });
-    tc.fn._handle($(this));
+    fn._handle($(this));
 });
 // Delete Data from table
 $(document).on('click', '.delete-td-data, .tc-delete-btn', function (e) {

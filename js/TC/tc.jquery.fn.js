@@ -109,7 +109,7 @@ jQuery.fn.extend({
 // Check if file
 const isFile = data => data.lastModified && data.size;
 // Ajax function
-tc.ajax = (url, data = {}, success = null, error = null, options = {}) => {
+fn.ajax = (url, data = {}, success = null, error = null, options = {}) => {
     let isContainFile = false;
     let formData = new FormData();
     for (let key in data) {
